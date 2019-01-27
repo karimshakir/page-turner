@@ -1,41 +1,41 @@
 <template>
-  <div id="app">
-    
-<div class="container">
-    <router-view/>
-</div>
+<div id="app">
 
+  <div class="container">
+      <router-view/>
   </div>
+</div>
 </template>
 
 <style>
-body {
- background-image: url("assets/spiration dark.png");
+html{
+  font-family: arial,sans-serif;
+  color: gray;
 }
+
+body {
+  padding: 0px;
+  margin-bottom: 200px;
+  background-image: url("assets/spiration dark.png");
+}
+
+
  button {
+  position: absolute;
   background-color: lightblue;
-  margin: 50px;
+  margin: 400px;
  }
+
+ h1 {
+  color: orange;
+ }
+
  p {
   color: grey;
  }
- a {
-/*  margin-rigth: 2000px;
-  float: right;*/
- }
+
 #pic {
-  /*float: left;*/
-  margin-right: 10px;
-  margin-left: 10px;
-  /*margin-bottom: 10px;*/
-}
-.result {
-  margin-left: 100px;
-  margin-bottom: 10px;
-  display: inline-block;
-}
-#info {
-  /*float: right;*/
+  margin-top: 50px;
 }
 
 </style>
