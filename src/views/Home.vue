@@ -1,17 +1,19 @@
 <template>
 <div class="container">
-      <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul>
+  <ul>
+    <li v-for="error in errors">{{ error }}</li>
+  </ul>
+  <h1>Page Turners </h1>
+  <p>By Karim Shakir</p>
   <input v-model="query" @keyup.enter="getBooks"/>
   <button id="submit" @click="getBooks" > Submit </button> 
 
-  <div class="result" v-for="book in books">
-    <div id="pic">
+  <div v-for="book in books">
+    <div class="result" id="pic">
     <p><img v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt=""></p>  
     <p v-if="!book.volumeInfo.imageLinks['thumbnail']">No Image</p>
     </div>
-    <div id="info">   
+    <div class="result" id="info">   
     <p v-if="book.volumeInfo.authors" v-for="author in book.volumeInfo.authors">Author: {{author}}</p>
     <p div v-if="!book.volumeInfo.authors"> No Author </p>
     <p v-if="book.volumeInfo.title"> Title:  {{ book.volumeInfo.title }}</p>
@@ -23,7 +25,6 @@
   </div>    
 </div>
 </template>
-
 
 <style>
 </style>
@@ -42,9 +43,8 @@
     methods: {
       getBooks() {
         if (!this.query) {
-          window.alert("ENTRY CANNOT BE BLANK");
+          alert("ENTRY CANNOT BE BLANK");
         }
-
         axios
           .get(`https://www.googleapis.com/books/v1/volumes?q=${this.query}`)
           .then(response => {
