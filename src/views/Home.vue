@@ -4,11 +4,11 @@
   <button id="submit" @click="getBooks" > Submit </button> 
 
   <div class="result" v-for="book in books">
-    <div>
-    <p><img id="pic" v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt=""></p>  
-    </div>
-    <div>   
+    <div id="pic">
+    <p><img v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt=""></p>  
     <p v-if="!book.volumeInfo.imageLinks['thumbnail']">No Image</p>
+    </div>
+    <div id="info">   
     <p v-if="book.volumeInfo.authors" v-for="author in book.volumeInfo.authors">Author: {{author}}</p>
     <p div v-if="!book.volumeInfo.authors"> No Author </p>
     <p v-if="book.volumeInfo.title"> Title:  {{ book.volumeInfo.title }}</p>

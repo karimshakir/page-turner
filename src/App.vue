@@ -54,10 +54,12 @@ body {
   color: grey;
  }
  a {
-  margin-left: 100px;
+/*  margin-rigth: 2000px;
+  float: right;*/
  }
 #pic {
   float: left;
+  display: block;
   margin-right: 10px;
   margin-left: 10px;
   /*margin-bottom: 10px;*/
@@ -65,6 +67,9 @@ body {
 .result {
   /*display: grid;*/
   margin-bottom: 100px;
+}
+#info {
+  /*float: right;*/
 }
 
 </style>
