@@ -1,5 +1,8 @@
 <template>
 <div class="container">
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
   <input v-model="query" @keyup.enter="getBooks"/>
   <button id="submit" @click="getBooks" > Submit </button> 
 
@@ -30,7 +33,7 @@
   export default {
     data: function() {
       return {
-        // errors: [],
+        errors: [],
         books: [],
         query: ''
       };
@@ -38,10 +41,16 @@
     created: function() {},
     methods: {
       getBooks() {
+        if (!this.query) {
+          window.alert("ENTRY CANNOT BE BLANK");
+        }
+
         axios
           .get(`https://www.googleapis.com/books/v1/volumes?q=${this.query}`)
           .then(response => {
             this.books = response.data.items;
+          }).catch(error => {
+            this.errors = error.response.data.errors;
           });
         this.query = "";
       },

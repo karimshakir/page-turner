@@ -53,10 +53,7 @@ body {
  p {
   color: grey;
  }
- a {
-/*  margin-rigth: 2000px;
-  float: right;*/
- }
+ 
 #pic {
   float: left;
   display: block;
