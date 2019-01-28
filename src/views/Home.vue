@@ -13,18 +13,17 @@
             input" aria-describedby="inputGroup-sizing-sm">
   </div>
   <div v-for="book in books">
-    <p v-if="books == []" > No Books By That Name !! Please Try Again !!</p>
     <div class="result" id="pic">
-      <p><img v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt=""></p>  
       <p v-if="!book.volumeInfo.imageLinks['thumbnail']">No Image</p>
+      <p><img v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt=""></p>  
     </div>
     <div class="result" id="info">   
-      <p v-if="book.volumeInfo.authors" v-for="author in book.volumeInfo.authors">Author: {{ author }}</p>
       <p div v-if="!book.volumeInfo.authors"> No Author </p>
-      <p v-if="book.volumeInfo.title"> Title:  {{ book.volumeInfo.title }}</p>
+      <p v-if="book.volumeInfo.authors" v-for="author in book.volumeInfo.authors">Author: {{ author }}</p>
       <p v-if="!book.volumeInfo.title"> No Title </p>
-      <p v-if="book.volumeInfo.publisher"> Publisher:  {{ book.volumeInfo.publisher }}</p>
+      <p v-if="book.volumeInfo.title"> Title:  {{ book.volumeInfo.title }}</p>
       <p v-if="!book.volumeInfo.publisher"> No Publisher</p> 
+      <p v-if="book.volumeInfo.publisher"> Publisher:  {{ book.volumeInfo.publisher }}</p>
       <a v-bind:href="'https://books.google.com/books?id=' + book.id"> More Info </a>
     </div>
   </div>    
