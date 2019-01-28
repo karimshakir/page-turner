@@ -13,7 +13,8 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
-    "vue-template-compiler": "^2.5.21"
+    "@vue/test-utils": "^1.0.0-beta.28",
+    "vue-template-compiler": "^2.5.22"
   },
   "postcss": {
     "plugins": {

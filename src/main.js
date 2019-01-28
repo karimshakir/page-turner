@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from "axios";
+import { shallowMount } from '@vue/test-utils'
+import Foo from './Foo'
 
 axios.defaults.baseURL = 
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";

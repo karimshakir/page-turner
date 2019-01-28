@@ -1,6 +1,5 @@
 <template>
 <div id="app">
-
   <div class="container">
       <router-view/>
   </div>
@@ -19,7 +18,6 @@ body {
   background-image: url("assets/spiration dark.png");
 }
 
-
  button {
   position: absolute;
   background-color: lightblue;
@@ -37,5 +35,4 @@ body {
 #pic {
   margin-top: 50px;
 }
-
 </style>
