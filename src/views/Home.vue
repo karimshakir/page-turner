@@ -13,6 +13,7 @@
             input" aria-describedby="inputGroup-sizing-sm">
   </div>
   <div v-for="book in books">
+    <p v-if="books == []" > No Books By That Name !! Please Try Again !!</p>
     <div class="result" id="pic">
       <p><img v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt=""></p>  
       <p v-if="!book.volumeInfo.imageLinks['thumbnail']">No Image</p>
@@ -57,6 +58,7 @@
             this.errors = error.response.data.errors;
           });
         this.query = "";
+        this.books = [];
       },
     },
     computed: {}
