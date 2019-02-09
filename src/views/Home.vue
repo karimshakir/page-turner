@@ -1,21 +1,22 @@
 <template>
 <div class="container">
-  <ul>
-    <li v-for="error in errors">{{ error }}</li>
-  </ul>
   <h1>Page Turners </h1>
   <p>By Karim Shakir</p>
+  <p v-if="errors">{{ errors }}</p>
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="submit" @click="getBooks">Submit</span>
+      <span class="input-group-text" id="submit" @click="submitSearch">Submit</span>
     </div>
-    <input v-model="query" @keyup.enter="getBooks" type="text" class="form-control" aria-label="Sizing example 
+    <input v-model="query" @keyup.enter="submitSearch" type="text" class="form-control" aria-label="Sizing example 
             input" aria-describedby="inputGroup-sizing-sm">
   </div>
+  <p v-if="message">{{ message }}</p>
   <div v-for="book in books">
     <div class="result" id="pic">
-      <p v-if="!book.volumeInfo.imageLinks['thumbnail']">No Image</p>
-      <p><img v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt=""></p>  
+      <p v-if="!book.volumeInfo.imageLinks">No Image</p>
+      <p v-if="book.volumeInfo.imageLinks">
+        <img v-bind:src="book.volumeInfo.imageLinks['thumbnail']" alt="">
+      </p>  
     </div>
     <div class="result" id="info">   
       <p div v-if="!book.volumeInfo.authors"> No Author </p>
@@ -34,30 +35,45 @@
 </style>
 
 <script>
-  var axios = require('axios');
+  const axios = require('axios');
   export default {
     data: function() {
       return {
-        errors: [],
+        errors: '',
         books: [],
-        query: ''
+        query: '',
+        message: ''
       };
     },
     created: function() {},
     methods: {
-      getBooks() {
+      submitSearch() {
+        this.validateEntry();
+        this.getBooks();
+        this.resetData();
+      },
+      validateEntry() {
         if (!this.query) {
           alert("ENTRY CANNOT BE BLANK");
+          return;
         }
+      },
+      getBooks() {
         axios
           .get(`https://www.googleapis.com/books/v1/volumes?q=${this.query}`)
           .then(response => {
-            this.books = response.data.items;
+            this.books = response.data.totalItems ? response.data.items : [];
+            if (!this.books.length) {
+              this.message = 'No results matching that search.';
+            }
           }).catch(error => {
-            this.errors = error.response.data.errors;
+            this.errors = "Error making Request!";
           });
-        this.query = "";
-        this.books = [];
+      },
+      resetData() {
+        this.errors = '';
+        this.message = '';
+        this.query = '';
       },
     },
     computed: {}
